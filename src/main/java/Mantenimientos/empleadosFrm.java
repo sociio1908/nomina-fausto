@@ -35,7 +35,6 @@ public class empleadosFrm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_apellido_pat = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         txt_mensaje = new javax.swing.JLabel();
         btn_salvar = new javax.swing.JButton();
@@ -58,6 +57,7 @@ public class empleadosFrm extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txt_sueldo = new javax.swing.JPasswordField();
         cb_coop = new javax.swing.JComboBox<>();
+        txt_nombre = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -118,6 +118,7 @@ public class empleadosFrm extends javax.swing.JFrame {
         jLabel9.setText("ID DEPARTAMENTO:");
 
         txt_nombre1.setToolTipText("");
+        txt_nombre1.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -139,15 +140,26 @@ public class empleadosFrm extends javax.swing.JFrame {
 
         btn_dep.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         btn_dep.setText("BUSCAR");
+        btn_dep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_depActionPerformed(evt);
+            }
+        });
 
         btn_puesto.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         btn_puesto.setText("BUSCAR");
+        btn_puesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_puestoActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("ID PUESTO:");
 
         txt_nombre2.setToolTipText("");
+        txt_nombre2.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
@@ -172,16 +184,16 @@ public class empleadosFrm extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_direccion)
-                    .addComponent(txt_nombre)
                     .addComponent(txt_apellido_pat)
                     .addComponent(txt_apellido_mat)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_mensaje)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_mensaje))
+                    .addComponent(txt_nombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -236,9 +248,9 @@ public class empleadosFrm extends javax.swing.JFrame {
                             .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_mensaje))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -345,7 +357,7 @@ public class empleadosFrm extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -407,7 +419,7 @@ public class empleadosFrm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -434,6 +446,18 @@ public class empleadosFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_depActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_depActionPerformed
+        departamentosFrm frm = new departamentosFrm();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+    }//GEN-LAST:event_btn_depActionPerformed
+
+    private void btn_puestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_puestoActionPerformed
+        puestosFrm frm = new puestosFrm();
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+    }//GEN-LAST:event_btn_puestoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,7 +529,7 @@ public class empleadosFrm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_id;
     private javax.swing.JLabel txt_mensaje;
-    private javax.swing.JPasswordField txt_nombre;
+    private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nombre1;
     private javax.swing.JTextField txt_nombre2;
     private javax.swing.JPasswordField txt_sueldo;

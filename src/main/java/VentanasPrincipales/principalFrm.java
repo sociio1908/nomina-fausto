@@ -10,6 +10,8 @@ import Mantenimientos.puestosFrm;
 import Mantenimientos.usuariosFrm;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,8 +26,20 @@ public class principalFrm extends javax.swing.JFrame {
      */
     public principalFrm() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH );
     }
 
+    
+//    void getdate(){
+//        
+//        try{
+//            
+//            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+//            date.setText(timeStamp);
+//        }catch(Exception e){
+//            
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +49,8 @@ public class principalFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -42,6 +58,8 @@ public class principalFrm extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -49,13 +67,40 @@ public class principalFrm extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(846, 393));
 
+        jPanel1.setBackground(new java.awt.Color(200, 212, 238));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 3, 52)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SISTEMA DE NÓMINA");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         jMenuBar1.setBackground(new java.awt.Color(200, 212, 238));
 
         jMenu1.setBackground(new java.awt.Color(200, 212, 238));
-        jMenu1.setText("Mantenimientos");
-        jMenu1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jMenu1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jMenu1.setText("- Mantenimientos");
+        jMenu1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jMenu1.setIconTextGap(0);
+        jMenu1.setMargin(new java.awt.Insets(3, 10, 3, 6));
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jMenuItem1.setText("Usuarios");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +109,7 @@ public class principalFrm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jMenuItem2.setText("Departamentos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +118,7 @@ public class principalFrm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jMenuItem3.setText("Puestos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +127,7 @@ public class principalFrm extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jMenuItem4.setText("Empleados");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +139,19 @@ public class principalFrm extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(200, 212, 238));
-        jMenu2.setText("Procesos");
-        jMenu2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jMenu2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jMenu2.setText("- Procesos");
+        jMenu2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jMenu2.setMargin(new java.awt.Insets(3, 10, 3, 6));
+
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem5.setText("Generar Nómina ");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem6.setText("Reversar Nómina");
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -101,11 +160,17 @@ public class principalFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 957, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -114,7 +179,6 @@ public class principalFrm extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         usuariosFrm frm = new usuariosFrm();
         frm.setLocationRelativeTo(null);
-        this.setEnabled(false);
         frm.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -122,7 +186,6 @@ public class principalFrm extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         departamentosFrm frm = new departamentosFrm();
         frm.setLocationRelativeTo(null);
-        frm.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         frm.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -174,6 +237,7 @@ public class principalFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -181,5 +245,8 @@ public class principalFrm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
