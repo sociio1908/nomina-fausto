@@ -4,6 +4,8 @@
  */
 package Mantenimientos;
 
+import com.mycompany.nominas.anderson.metodosVarios;
+
 /**
  *
  * @author Ing. Mariam Estrella
@@ -15,7 +17,12 @@ public class empleadosFrm extends javax.swing.JFrame {
      */
     public empleadosFrm() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH );
     }
+    
+    
+    
+    metodosVarios mtds = new metodosVarios();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,6 +71,13 @@ public class empleadosFrm extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        cb_sexo1 = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        btn_clear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -109,6 +123,11 @@ public class empleadosFrm extends javax.swing.JFrame {
 
         btn_limpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_eliminar.setText("ELIMINAR");
@@ -314,11 +333,11 @@ public class empleadosFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOMBRES", "APELLIDO PAT.", "APELLIDO MAT.", "TELEFONO", "SEXO", "DEPARTAMENTO", "PUESTO", "FECHA INGRESO", "COOP", "SUELDO", "DIRECCION"
+                "ID", "NOMBRES", "APELLIDO PAT.", "APELLIDO MAT.", "TELEFONO", "IDDEP", "DEPARTAMENTO", "IDPUES", "PUESTO", "FECHA INGRESO", "SEXO", "COOP", "SUELDO", "DIRECCION"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, true, true, true, true, true
+                false, false, false, false, false, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -333,15 +352,15 @@ public class empleadosFrm extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(4).setMinWidth(60);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(60);
             jTable1.getColumnModel().getColumn(4).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(50);
-            jTable1.getColumnModel().getColumn(9).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(9).setMaxWidth(50);
             jTable1.getColumnModel().getColumn(10).setMinWidth(50);
             jTable1.getColumnModel().getColumn(10).setPreferredWidth(50);
             jTable1.getColumnModel().getColumn(10).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(11).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(11).setMaxWidth(50);
+            jTable1.getColumnModel().getColumn(12).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(12).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(12).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -370,6 +389,29 @@ public class empleadosFrm extends javax.swing.JFrame {
 
         txt_buscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel15.setText("Filtrar por: ");
+
+        cb_sexo1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cb_sexo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id empleado", "Nombre empleado", "Puestos", "Departamentos" }));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel16.setText("Fecha hasta:");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel17.setText("Fecha desde:");
+
+        btn_clear.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        btn_clear.setText("Limpiar");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -378,17 +420,39 @@ public class empleadosFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_sexo1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addComponent(cb_sexo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel17)))
+                .addGap(14, 14, 14))
         );
 
         jLabel6.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
@@ -459,6 +523,14 @@ public class empleadosFrm extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_btn_puestoActionPerformed
 
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+         mtds.limpiarCampos(jPanel5, "limpiar consultas");
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+         mtds.limpiarCampos(jPanel3, "limpiar campos empleado");
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +567,7 @@ public class empleadosFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_dep;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_limpiar;
@@ -502,13 +575,19 @@ public class empleadosFrm extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox<String> cb_coop;
     private javax.swing.JComboBox<String> cb_sexo;
+    private javax.swing.JComboBox<String> cb_sexo1;
     private com.toedter.calendar.JDateChooser fecha_ingreso;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
