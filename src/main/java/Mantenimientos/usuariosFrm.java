@@ -4,6 +4,7 @@
  */
 package Mantenimientos;
 
+import com.mycompany.nominas.anderson.metodosVarios;
 import javax.swing.JOptionPane;
 
 /**
@@ -115,7 +116,6 @@ public class usuariosFrm extends javax.swing.JFrame {
 
         mensaje.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         mensaje.setForeground(new java.awt.Color(51, 51, 51));
-        mensaje.setText("Creando...");
 
         btn_salvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_salvar.setText("SALVAR");
@@ -127,6 +127,11 @@ public class usuariosFrm extends javax.swing.JFrame {
 
         btn_limpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_eliminar.setText("ELIMINAR");
@@ -201,7 +206,6 @@ public class usuariosFrm extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -364,7 +368,6 @@ public class usuariosFrm extends javax.swing.JFrame {
             }
 
             if(validar.equals("no")){
-
                 general.registrar(ruta,login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
                 login.setText("");
                 pass.setText("");
@@ -372,14 +375,14 @@ public class usuariosFrm extends javax.swing.JFrame {
                 nombre.setText("");
                 apellido.setText("");
                 correo.setText("");
-                mensaje.setText("CREANDO");
+                mensaje.setText("Creando");
 
             }else{
                 general.modificar(ruta,login.getText(),login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
 
             }
             
-              MetodosGenerales metodos = new MetodosGenerales();
+        MetodosGenerales metodos = new MetodosGenerales();
         metodos.LlenarTablaModel(ruta,jTable1,6);
         }else{
             JOptionPane.showMessageDialog(null,"Todos los campos son obligatorios, por favor llenarlo","Errro",JOptionPane.ERROR_MESSAGE);
@@ -430,6 +433,11 @@ public class usuariosFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+         mtds.limpiarCampos(jPanel3, "limpiar usuario");
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    metodosVarios mtds = new metodosVarios();
     /**
      * @param args the command line arguments
      */
