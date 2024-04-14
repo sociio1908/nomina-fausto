@@ -11,6 +11,8 @@ import Mantenimientos.usuariosFrm;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,19 +29,19 @@ public class principalFrm extends javax.swing.JFrame {
     public principalFrm() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH );
+        getdate();
     }
 
     
-//    void getdate(){
-//        
-//        try{
-//            
-//            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-//            date.setText(timeStamp);
-//        }catch(Exception e){
-//            
-//        }
-//    }
+    void getdate(){
+        try{
+          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+          LocalDateTime now = LocalDateTime.now();  
+        txt_dateTime1.setText("Fecha actual "+dtf.format(now));
+        }catch(Exception e){
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +53,9 @@ public class principalFrm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        txt_dateTime = new javax.swing.JLabel();
+        txt_dateTime1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -74,20 +79,55 @@ public class principalFrm extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SISTEMA DE NÓMINA");
 
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+
+        txt_dateTime.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        txt_dateTime.setForeground(new java.awt.Color(200, 212, 238));
+        txt_dateTime.setText("Dev. by Anderson ");
+
+        txt_dateTime1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        txt_dateTime1.setForeground(new java.awt.Color(200, 212, 238));
+        txt_dateTime1.setText("FECHA Y HORA: ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_dateTime1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_dateTime)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_dateTime)
+                    .addComponent(txt_dateTime1))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -95,13 +135,14 @@ public class principalFrm extends javax.swing.JFrame {
 
         jMenu1.setBackground(new java.awt.Color(200, 212, 238));
         jMenu1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenu1.setText("- Mantenimientos");
+        jMenu1.setForeground(new java.awt.Color(102, 102, 102));
+        jMenu1.setText("+ Mantenimientos");
         jMenu1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jMenu1.setIconTextGap(0);
         jMenu1.setMargin(new java.awt.Insets(3, 10, 3, 6));
 
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jMenuItem1.setText("Usuarios");
+        jMenuItem1.setText("- Usuarios");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -110,7 +151,7 @@ public class principalFrm extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jMenuItem2.setText("Departamentos");
+        jMenuItem2.setText("- Departamentos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -119,7 +160,7 @@ public class principalFrm extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jMenuItem3.setText("Puestos");
+        jMenuItem3.setText("- Puestos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -128,7 +169,7 @@ public class principalFrm extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jMenuItem4.setText("Empleados");
+        jMenuItem4.setText("- Empleados");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -140,16 +181,17 @@ public class principalFrm extends javax.swing.JFrame {
 
         jMenu2.setBackground(new java.awt.Color(200, 212, 238));
         jMenu2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jMenu2.setText("- Procesos");
+        jMenu2.setForeground(new java.awt.Color(102, 102, 102));
+        jMenu2.setText("+ Procesos");
         jMenu2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jMenu2.setMargin(new java.awt.Insets(3, 10, 3, 6));
 
         jMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem5.setText("Generar Nómina ");
+        jMenuItem5.setText("- Generar Nómina ");
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem6.setText("Reversar Nómina");
+        jMenuItem6.setText("- Reversar Nómina");
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -248,5 +290,8 @@ public class principalFrm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel txt_dateTime;
+    private javax.swing.JLabel txt_dateTime1;
     // End of variables declaration//GEN-END:variables
 }

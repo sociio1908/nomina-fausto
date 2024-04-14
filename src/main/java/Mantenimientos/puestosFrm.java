@@ -4,17 +4,21 @@
  */
 package Mantenimientos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ing. Mariam Estrella
  */
 public class puestosFrm extends javax.swing.JFrame {
-
+ String ruta="puestos.txt";
     /**
      * Creates new form puestosFrm
      */
     public puestosFrm() {
         initComponents();
+        MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,2);
     }
 
     /**
@@ -29,19 +33,20 @@ public class puestosFrm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
+        txt_id1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_desc = new javax.swing.JPasswordField();
         txt_mensaje = new javax.swing.JLabel();
         btn_salvar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
+        txt_desc = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
+        btn_salvar1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,7 +61,12 @@ public class puestosFrm extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("ID PUESTOS:");
 
-        txt_id.setToolTipText("");
+        txt_id1.setToolTipText("");
+        txt_id1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_id1KeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -64,16 +74,33 @@ public class puestosFrm extends javax.swing.JFrame {
 
         txt_mensaje.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         txt_mensaje.setForeground(new java.awt.Color(51, 51, 51));
-        txt_mensaje.setText("Creando...");
+        txt_mensaje.setText("CREANDO");
 
         btn_salvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_salvar.setText("SALVAR");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         btn_limpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
+        txt_desc.setToolTipText("");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -89,10 +116,12 @@ public class puestosFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txt_id)
+                                .addComponent(txt_id1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_mensaje))
-                            .addComponent(txt_desc)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(txt_desc))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,7 +136,7 @@ public class puestosFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_mensaje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -168,6 +197,19 @@ public class puestosFrm extends javax.swing.JFrame {
         jLabel1.setText("BUSCAR:");
 
         txt_buscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_buscarKeyReleased(evt);
+            }
+        });
+
+        btn_salvar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_salvar1.setText("Buscar");
+        btn_salvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -178,6 +220,8 @@ public class puestosFrm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_salvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -186,7 +230,8 @@ public class puestosFrm extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(txt_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(btn_salvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -240,6 +285,72 @@ public class puestosFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        if(txt_id1.getText().equals("")==false && txt_desc.getText().equals("")==false){
+            MetodosGenerales general = new MetodosGenerales ();
+            String datos=txt_id1.getText()+"~"+txt_desc.getText();
+            if(txt_mensaje.getText().equals("CREANDO")){
+                general.registrar(ruta,datos);
+                limpiarControles(true);
+                txt_mensaje.setText("CREANDO");
+            }else{
+                general.modificar(ruta,txt_id1.getText(),datos);
+            }
+            
+             MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,2);
+        }else{
+            JOptionPane.showMessageDialog(null,"Todos los campos son obligatorios, por favor llenarlo","Errro",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+            if(txt_id1.getText().equals("")==false){
+            MetodosGenerales borrar =new MetodosGenerales();
+            borrar.eliminar(ruta, txt_id1.getText());
+            limpiarControles(true);
+              MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,2);
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+         limpiarControles(true);
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void txt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscarKeyReleased
+
+    private void btn_salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar1ActionPerformed
+        llenarTabla();
+    }//GEN-LAST:event_btn_salvar1ActionPerformed
+
+    private void txt_id1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_id1KeyReleased
+           MetodosGenerales usuario= new MetodosGenerales();
+        String consulta=usuario.validarID(ruta, txt_id1.getText());
+        if(consulta.equals("no")){
+            limpiarControles(false);
+            txt_mensaje.setText("CREANDO");
+        }else{
+            txt_desc.setText(consulta.split("~")[1]);
+            txt_mensaje.setText("Modificando");
+        }
+    }//GEN-LAST:event_txt_id1KeyReleased
+
+      public void llenarTabla(){
+            MetodosGenerales metodos = new MetodosGenerales();
+            if(txt_buscar.getText().equals("")) metodos.LlenarTablaModel(ruta, jTable1, 2);
+            else  metodos.LlenarTablaModel(ruta, jTable1, 2,txt_buscar.getText(),1);
+
+     }
+    
+       public void limpiarControles(boolean limpiarID){
+           if(limpiarID){
+               txt_id1.setText("");
+           } 
+            txt_desc.setText("");
+   }
     /**
      * @param args the command line arguments
      */
@@ -279,6 +390,7 @@ public class puestosFrm extends javax.swing.JFrame {
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_salvar;
+    private javax.swing.JButton btn_salvar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -290,8 +402,8 @@ public class puestosFrm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txt_buscar;
-    private javax.swing.JPasswordField txt_desc;
-    private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_desc;
+    private javax.swing.JTextField txt_id1;
     private javax.swing.JLabel txt_mensaje;
     // End of variables declaration//GEN-END:variables
 }

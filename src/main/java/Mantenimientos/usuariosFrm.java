@@ -4,17 +4,21 @@
  */
 package Mantenimientos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alvaro
  */
 public class usuariosFrm extends javax.swing.JFrame {
-
+ String ruta="usuarios.txt";
     /**
      * Creates new form usuariosFrm
      */
     public usuariosFrm() {
         initComponents();
+             MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,6);
     }
 
     /**
@@ -30,19 +34,21 @@ public class usuariosFrm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt_user = new javax.swing.JTextField();
+        login = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_apellido = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txt_nombre = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_pass = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        cb_admin = new javax.swing.JComboBox<>();
-        txt_mensaje = new javax.swing.JLabel();
+        nivel = new javax.swing.JComboBox<>();
+        mensaje = new javax.swing.JLabel();
         btn_salvar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        correo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -78,19 +84,24 @@ public class usuariosFrm extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("USUARIO:");
 
-        txt_user.setToolTipText("");
+        login.setToolTipText("");
+        login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                loginKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("CONTRASEÑA");
 
-        txt_apellido.setToolTipText("");
+        apellido.setToolTipText("");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("APELLIDOS:");
 
-        txt_nombre.setToolTipText("");
+        nombre.setToolTipText("");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
@@ -100,20 +111,36 @@ public class usuariosFrm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("ADMINISTRADOR:");
 
-        cb_admin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NO", "SI" }));
+        nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Normal" }));
 
-        txt_mensaje.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        txt_mensaje.setForeground(new java.awt.Color(51, 51, 51));
-        txt_mensaje.setText("Creando...");
+        mensaje.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        mensaje.setForeground(new java.awt.Color(51, 51, 51));
+        mensaje.setText("Creando...");
 
         btn_salvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_salvar.setText("SALVAR");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         btn_limpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
 
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("CORREO:");
+
+        correo.setToolTipText("");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -130,18 +157,22 @@ public class usuariosFrm extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_user)
-                            .addComponent(txt_pass)
-                            .addComponent(txt_nombre)
-                            .addComponent(txt_apellido)))
+                            .addComponent(login)
+                            .addComponent(pass)
+                            .addComponent(nombre)
+                            .addComponent(apellido)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 66, Short.MAX_VALUE)))
+                        .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 66, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(correo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_mensaje)
+                    .addComponent(mensaje)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,28 +187,37 @@ public class usuariosFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_mensaje))
+                    .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mensaje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cb_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(nivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         jPanel4.setBackground(new java.awt.Color(200, 212, 238));
@@ -189,11 +229,11 @@ public class usuariosFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "USUARIO", "CONTRASEÑA", "NOMBRES", "APELLIDOS", "CORREO"
+                "USUARIO", "CONTRASEÑA", "NIVEL", "NOMBRES", "APELLIDOS", "CORREO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -306,6 +346,90 @@ public class usuariosFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        if(login.getText().equals("")==false && pass.getText().equals("")==false && nivel.getSelectedItem().equals("")==false && nombre.getText().equals("")==false && apellido.getText().equals("")==false){
+            MetodosGenerales general = new MetodosGenerales ();
+            String validar=general.validarID("Usuarios.txt",login.getText());
+            String validar_email="Sin email";
+            if(correo.getText().equals("")){
+                validar_email="Sin email";
+            }else{
+                validar_email=correo.getText();
+            }
+            String nivelAcceso="";
+            if(nivel.getSelectedIndex()==0){
+                nivelAcceso = "0";
+            }else{
+                nivelAcceso = "1";
+            }
+
+            if(validar.equals("no")){
+
+                general.registrar(ruta,login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
+                login.setText("");
+                pass.setText("");
+                nivel.setSelectedIndex(0);
+                nombre.setText("");
+                apellido.setText("");
+                correo.setText("");
+                mensaje.setText("CREANDO");
+
+            }else{
+                general.modificar(ruta,login.getText(),login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
+
+            }
+            
+              MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,6);
+        }else{
+            JOptionPane.showMessageDialog(null,"Todos los campos son obligatorios, por favor llenarlo","Errro",JOptionPane.ERROR_MESSAGE);
+        }   
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void loginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyReleased
+       MetodosGenerales usuario= new MetodosGenerales();
+        String consultas_usu=usuario.validarID(ruta, login.getText());
+        if(consultas_usu.equals("no")){
+            pass.setText("");
+            nombre.setText("");
+            apellido.setText("");
+            correo.setText("");
+            mensaje.setText("CREANDO");
+        }else{
+            pass.setText(consultas_usu.split("~")[1]);
+            if(consultas_usu.split("~")[2].equals("0")){
+                nivel.setSelectedItem("Administrador");
+            }else{
+                nivel.setSelectedItem("Normal");
+            }
+
+            nombre.setText(consultas_usu.split("~")[3]);
+            apellido.setText(consultas_usu.split("~")[4]);
+            if(consultas_usu.split("~")[5].equals("Sin email")){
+                correo.setText("");
+            }else{
+                correo.setText(consultas_usu.split("~")[5]);
+            }
+
+            mensaje.setText("Modificando");
+        }
+    }//GEN-LAST:event_loginKeyReleased
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+         if(login.getText().equals("")==false){
+            MetodosGenerales borrar =new MetodosGenerales();
+            borrar.eliminar(ruta, login.getText());
+            login.setText("");
+            pass.setText("");
+            nivel.setSelectedIndex(0);
+            nombre.setText("");
+            apellido.setText("");
+            correo.setText("");
+               MetodosGenerales metodos = new MetodosGenerales();
+        metodos.LlenarTablaModel(ruta,jTable1,6);
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,10 +466,11 @@ public class usuariosFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apellido;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_salvar;
-    private javax.swing.JComboBox<String> cb_admin;
+    private javax.swing.JTextField correo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -353,6 +478,7 @@ public class usuariosFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -360,11 +486,11 @@ public class usuariosFrm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField login;
+    private javax.swing.JLabel mensaje;
+    private javax.swing.JComboBox<String> nivel;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JTextField txt_buscar;
-    private javax.swing.JLabel txt_mensaje;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JPasswordField txt_pass;
-    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
