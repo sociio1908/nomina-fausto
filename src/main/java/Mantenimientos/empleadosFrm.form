@@ -181,8 +181,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_sueldo" min="-2" pref="97" max="-2" attributes="0"/>
                                   <Component id="cb_coop" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="txt_sueldo" min="-2" pref="122" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -524,8 +524,6 @@
                 <Property name="text" type="java.lang.String" value="SUELDO:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="txt_sueldo">
-            </Component>
             <Component class="javax.swing.JComboBox" name="cb_coop">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -540,6 +538,8 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_nombre">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_sueldo">
             </Component>
           </SubComponents>
         </Container>

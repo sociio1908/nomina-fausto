@@ -55,9 +55,9 @@ public class empleadosFrm extends javax.swing.JFrame {
         fecha_ingreso = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txt_sueldo = new javax.swing.JPasswordField();
         cb_coop = new javax.swing.JComboBox<>();
         txt_nombre = new javax.swing.JTextField();
+        txt_sueldo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -233,8 +233,8 @@ public class empleadosFrm extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_coop, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cb_coop, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -532,7 +532,7 @@ public class empleadosFrm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nombre1;
     private javax.swing.JTextField txt_nombre2;
-    private javax.swing.JPasswordField txt_sueldo;
+    private javax.swing.JTextField txt_sueldo;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }
