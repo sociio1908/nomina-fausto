@@ -170,6 +170,11 @@ public class puestosFrm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -337,6 +342,16 @@ public class puestosFrm extends javax.swing.JFrame {
             txt_mensaje.setText("Modificando");
         }
     }//GEN-LAST:event_txt_id1KeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int filaSeleccionada = jTable1.getSelectedRow();
+
+            if(filaSeleccionada!=-1){
+                String idPuesto = jTable1.getValueAt(filaSeleccionada, 0).toString();
+                  empleadosFrm.txt_puesto.setText(idPuesto);
+                  this.dispose();
+            }
+    }//GEN-LAST:event_jTable1MouseClicked
 
       public void llenarTabla(){
             MetodosGenerales metodos = new MetodosGenerales();

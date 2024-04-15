@@ -177,6 +177,11 @@ public class departamentosFrm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -351,6 +356,16 @@ public class departamentosFrm extends javax.swing.JFrame {
     private void btn_salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar1ActionPerformed
        llenarTabla();
     }//GEN-LAST:event_btn_salvar1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+              int filaSeleccionada = jTable1.getSelectedRow();
+
+            if(filaSeleccionada!=-1){
+                String idPuesto = jTable1.getValueAt(filaSeleccionada, 0).toString();
+                  empleadosFrm.txt_departamento.setText(idPuesto);
+                    this.dispose();
+            }
+    }//GEN-LAST:event_jTable1MouseClicked
 
        public void limpiarControles(boolean limpiarID){
            if(limpiarID){

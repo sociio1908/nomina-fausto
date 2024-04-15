@@ -43,6 +43,29 @@ public class metodosVarios {
 
     }
     
+    
+       public void limpiarCampos(JPanel panel){
+        try{
+          for(int i = 0; panel.getComponents().length > i; i++){
+            if(panel.getComponents()[i] instanceof JTextField && i!=8){
+                ((JTextField)panel.getComponents()[i]).setText("");
+            }
+            else if(panel.getComponents()[i] instanceof JPasswordField){
+                ((JPasswordField)panel.getComponents()[i]).setText("");
+            }
+            else if(panel.getComponents()[i] instanceof JDateChooser){
+                ((JDateChooser)panel.getComponents()[i]).setCalendar(null);
+            }
+            else if(panel.getComponents()[i] instanceof JDayChooser){
+                ((JDayChooser)panel.getComponents()[i]).setCalendar(null);
+            }
+        }
+        }catch(Exception e){
+            
+        }
+
+    }
+    
 }
     
 
