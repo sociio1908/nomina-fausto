@@ -4,6 +4,7 @@
  */
 package Mantenimientos;
 
+import com.mycompany.nominas.anderson.metodosVarios;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,10 +46,10 @@ public class usuariosFrm extends javax.swing.JFrame {
         nivel = new javax.swing.JComboBox<>();
         mensaje = new javax.swing.JLabel();
         btn_salvar = new javax.swing.JButton();
-        btn_limpiar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         correo = new javax.swing.JTextField();
+        btn_eliminar1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -115,21 +116,12 @@ public class usuariosFrm extends javax.swing.JFrame {
 
         mensaje.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         mensaje.setForeground(new java.awt.Color(51, 51, 51));
-        mensaje.setText("Creando...");
 
         btn_salvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_salvar.setText("SALVAR");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_salvarActionPerformed(evt);
-            }
-        });
-
-        btn_limpiar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_limpiar.setText("LIMPIAR");
-        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_limpiarActionPerformed(evt);
             }
         });
 
@@ -146,6 +138,14 @@ public class usuariosFrm extends javax.swing.JFrame {
         jLabel8.setText("CORREO:");
 
         correo.setToolTipText("");
+
+        btn_eliminar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_eliminar1.setText("LIMPIAR");
+        btn_eliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -183,7 +183,7 @@ public class usuariosFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_eliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -210,8 +210,8 @@ public class usuariosFrm extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_eliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -368,7 +368,6 @@ public class usuariosFrm extends javax.swing.JFrame {
             }
 
             if(validar.equals("no")){
-
                 general.registrar(ruta,login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
                 login.setText("");
                 pass.setText("");
@@ -376,14 +375,14 @@ public class usuariosFrm extends javax.swing.JFrame {
                 nombre.setText("");
                 apellido.setText("");
                 correo.setText("");
-                mensaje.setText("CREANDO");
+                mensaje.setText("Creando");
 
             }else{
                 general.modificar(ruta,login.getText(),login.getText()+"~"+pass.getText()+"~"+nivelAcceso+"~"+nombre.getText()+"~"+apellido.getText()+"~"+validar_email);
 
             }
             
-              MetodosGenerales metodos = new MetodosGenerales();
+        MetodosGenerales metodos = new MetodosGenerales();
         metodos.LlenarTablaModel(ruta,jTable1,6);
         }else{
             JOptionPane.showMessageDialog(null,"Todos los campos son obligatorios, por favor llenarlo","Errro",JOptionPane.ERROR_MESSAGE);
@@ -420,7 +419,7 @@ public class usuariosFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_loginKeyReleased
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
-         if(login.getText().equals("")==false){
+        if(login.getText().equals("")==false){
             MetodosGenerales borrar =new MetodosGenerales();
             borrar.eliminar(ruta, login.getText());
             login.setText("");
@@ -429,15 +428,17 @@ public class usuariosFrm extends javax.swing.JFrame {
             nombre.setText("");
             apellido.setText("");
             correo.setText("");
-               MetodosGenerales metodos = new MetodosGenerales();
-        metodos.LlenarTablaModel(ruta,jTable1,6);
+            MetodosGenerales metodos = new MetodosGenerales();
+            metodos.LlenarTablaModel(ruta,jTable1,6);
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
-    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_limpiarActionPerformed
+    private void btn_eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar1ActionPerformed
+                          metodosVarios mtds = new metodosVarios();
+                  mtds.limpiarCampos(jPanel3, "limpiar usuario");
+    }//GEN-LAST:event_btn_eliminar1ActionPerformed
 
+  
     /**
      * @param args the command line arguments
      */
@@ -476,7 +477,7 @@ public class usuariosFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
     private javax.swing.JButton btn_eliminar;
-    private javax.swing.JButton btn_limpiar;
+    private javax.swing.JButton btn_eliminar1;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JTextField correo;
     private javax.swing.JLabel jLabel1;
